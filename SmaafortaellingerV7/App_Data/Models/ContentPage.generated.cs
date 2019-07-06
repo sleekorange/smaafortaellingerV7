@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Indholdsside</summary>
 	[PublishedContentModel("contentPage")]
-	public partial class ContentPage : PublishedContentModel
+	public partial class ContentPage : PublishedContentModel, INavigation
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "contentPage";
@@ -43,6 +43,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ContentPage, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Skjul i navigationen
+		///</summary>
+		[ImplementPropertyType("umbracoNavihide")]
+		public bool UmbracoNavihide
+		{
+			get { return Umbraco.Web.PublishedContentModels.Navigation.GetUmbracoNavihide(this); }
 		}
 	}
 }
