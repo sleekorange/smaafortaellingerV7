@@ -1,0 +1,67 @@
+﻿/// <reference path="../settings/_colorscheme.scss" />
+/// <reference path="../settings/_settings.scss" />
+
+
+
+#menu {
+    display: flex;
+    position: relative;
+    z-index: 2;
+
+    ul {
+        margin-left: auto;
+        margin-top: auto;
+        margin-bottom: 0;
+        font-size: 22px;
+        font-weight: 400;
+        font-family: 'Josefin Sans', sans-serif;
+        list-style: none;
+        padding: 0;
+        display: flex;
+
+        li {
+            margin-left: 30px;
+
+            a {
+                position: relative;
+                color: $black;
+                text-align: center;
+                /*padding: 10px 30px;*/
+                display: block;
+                text-decoration: none;
+                transition: background 0.3s ease;
+
+                span {
+                    position: relative;
+                    display: block;
+                }
+
+                &:hover {
+                    color: $primary-color;
+                }
+
+                &.active {
+                    border-bottom: 2px solid $primary-color;
+                }
+            }
+        }
+
+        .has-sub {
+            > ul {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                padding: 10px;
+            }
+
+            &:hover {
+
+                > ul {
+                    display: block;
+                }
+            }
+        }
+    }
+}

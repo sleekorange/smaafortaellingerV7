@@ -1,9 +1,41 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.FrontPage>
+﻿@inherits UmbracoTemplatePage<FrontPage>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
 
+<div class="front-page">
     <div class="container">
-        <h1>Forside</h1>
+        <div class="slider">
+            <div class="row">
+                <div class="col-12">
+                    <div class="slider-image">
+                        <img src="@Model.Content.Image.GetCropUrl("forside")" />
+                        <h1 class="slider-text">Her er dine børn i trygge hænder</h1>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="icon-text-box">
+            <div class="row">
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="col-4">
+                        <div class="icon-text-holder">
+                            <div>
+                                <img src="https://image.flaticon.com/icons/svg/874/874997.svg"/>
+                            </div>
+                            <div>
+                                <h3>Test</h3>
+                            </div>
+                            <div class="icon-text">
+                                <p>Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard fyldtekst siden 1500-tallet.</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
+</div>

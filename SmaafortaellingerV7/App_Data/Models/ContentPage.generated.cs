@@ -46,6 +46,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Grid
+		///</summary>
+		[ImplementPropertyType("grid")]
+		public Newtonsoft.Json.Linq.JToken Grid
+		{
+			get { return this.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("grid"); }
+		}
+
+		///<summary>
 		/// Skjul i navigationen
 		///</summary>
 		[ImplementPropertyType("umbracoNavihide")]

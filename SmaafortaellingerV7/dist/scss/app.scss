@@ -1,8 +1,11 @@
-﻿body {
-    background: #f8f7f6;
-    color: #666;
-}
+﻿// Colors
+@import "settings/colorscheme";
 
-.logo {
-    width: 400px;
-}
+// Basic
+@import "core/basic";
+@import "core/header";
+@import "core/footer";
+
+// Components
+
+@import "components/navigation";

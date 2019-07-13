@@ -1,0 +1,36 @@
+﻿/// <reference path="../settings/_colorscheme.scss" />
+/// <reference path="../settings/_settings.scss" />
+
+.header-wrapper {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#eefaf2+0,ffffff+100 */
+    background: #eefaf2; /* Old browsers */
+    background: -moz-linear-gradient(top, #eefaf2 0%, #ffffff 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #eefaf2 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #eefaf2 0%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eefaf2', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    /*border-top: 5px solid $primary-color;*/
+    position: relative;
+}
+
+.header-clouds {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-image: url('../images/svg/clouds.svg');
+    height: 150px;
+}
+
+header {
+    padding: 10px 0;
+}
+
+.logo-wrapper {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    width: 400px;
+}

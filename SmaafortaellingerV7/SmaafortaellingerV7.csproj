@@ -280,7 +280,11 @@
     <Content Include="dist\scss\app.min.css">
       <DependentUpon>app.css</DependentUpon>
     </Content>
+    <None Include="dist\scss\core\_basic.scss" />
+    <None Include="dist\scss\core\_header.scss" />
+    <None Include="dist\scss\core\_footer.scss" />
     <Content Include="Global.asax" />
+    <Content Include="Media\1001\cropped-black-logo-no-background-1-1024x342.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +330,8 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="dist\scss\components\_navigation.scss" />
+    <Content Include="dist\scss\settings\_colorscheme.scss" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -338,12 +344,14 @@
     <Content Include="Views\Partials\Grid\Bootstrap3-Fluid.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2.cshtml" />
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\contentPage.cshtml" />
     <Content Include="Views\frontPage.cshtml" />
     <Content Include="Views\Master.cshtml" />
     <Content Include="Views\Partials\Navigation\MainNavigation.cshtml" />
     <Content Include="Views\Partials\Header\Header.cshtml" />
+    <Content Include="Views\Partials\Footer\Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

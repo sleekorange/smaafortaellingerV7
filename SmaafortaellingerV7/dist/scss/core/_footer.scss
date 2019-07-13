@@ -1,0 +1,14 @@
+﻿/// <reference path="../settings/_colorscheme.scss" />
+/// <reference path="../settings/_settings.scss" />
+
+.footer {
+    /*background: $primary-color;
+    border-bottom: 5px solid $primary-color;*/
+    padding: 50px 0 0;
+    position: relative;
+}
+
+.footer-trees {
+    background-image: url('../images/svg/trees-mint.svg');
+    height: 150px;
+}

@@ -1,25 +1,88 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using SmaafortaellingerV7.Infrastructure.Helpers
 @using Umbraco.Web
+@{
+    var root = SiteHelpers.RootNode;
+    var settings = SiteHelpers.Settings as Settings;
+}
 
-
-@*
-    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
-    This is the home page for a standard website.
-    It also highlights the current active page/section in the navigation with the CSS class "current".
-*@
-
-@{ var selection = Model.Content.Site().Children.Where(x => x.IsVisible()).ToArray(); }
-
-    <div class="container">
-        @if (selection.Length > 0)
+<div id="menu">
+    @if (settings != null && settings.Logo != null)
+    {
+        <div class="logo-wrapper">
+            <a href="/" title="Gå til forsiden">
+                <img src="@settings.Logo.Url" alt="Logo" class="logo" />
+            </a>
+        </div>
+    }
+    <ul>
+        @if (root.IsVisible())
         {
-            <ul>
-                @foreach (var item in selection)
-                {
-                    <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
-                        <a href="@item.Url">@item.Name</a>
-                    </li>
-                }
-            </ul>
+            <li class="@(root.Id == Model.Content.Id ? "active" : "") @root.GetPropertyValue("customClass")">
+                <a class="@(root.Id == Model.Content.Id ? "active" : "")" href="@GetLink(root)" target="@(root.GetPropertyValue<bool>("targetBlank") ? "_blank" : "_self")">
+                    <span>@GetName(root)</span>
+                </a>
+            </li>
         }
-    </div>
+        @GetPages(root)
+    </ul>
+</div>
+
+
+
+@helper GetPages(IPublishedContent parent)
+    {
+
+        foreach (var page in parent.Children.Where(x => x.IsVisible() && x.Level < 5))
+        {
+            var hasChildren = page.Children.Any(x => x.IsVisible());
+            var active = Umbraco.TypedContent(Model.Content.Path.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)).Where(x => x != null).Any(x => x.Id == page.Id && x.Level > 1);
+
+            <li class="@(active ? "active" : "") @(hasChildren ? "has-sub" : "") @page.GetPropertyValue("customClass")">
+                @Html.Raw(hasChildren ? "<div class=\"toggle\"><span></span></div>" : "")
+                <a href="@GetLink(page)" target="@(page.GetPropertyValue<bool>("targetBlank") ? "_blank" : "_self")">
+                    <span>@GetName(page)</span>
+                </a>
+                @if (hasChildren)
+                {
+
+                    <ul>
+                        <li>
+                            <ul class="container push-left">
+                                @GetPages(page)
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                }
+            </li>
+
+        }
+}
+
+@functions {
+    string GetName(IPublishedContent page)
+    {
+        if (page.HasValue("menuTitle"))
+        {
+            return page.GetPropertyValue<string>("menuTitle");
+        }
+        else
+        {
+            return page.Name;
+        }
+    }
+
+    string GetLink(IPublishedContent page)
+    {
+        if (page.HasValue("customLink"))
+        {
+            return page.GetPropertyValue<string>("customLink");
+        }
+        else
+        {
+            return page.Url;
+        }
+    }
+}
