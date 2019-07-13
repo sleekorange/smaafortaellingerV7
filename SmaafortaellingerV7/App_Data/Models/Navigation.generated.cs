@@ -20,16 +20,24 @@ using Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Indstillinger</summary>
-	[PublishedContentModel("settings")]
-	public partial class Settings : PublishedContentModel, INavigation
+	// Mixin content Type 1074 with alias "navigation"
+	/// <summary>_Navigation</summary>
+	public partial interface INavigation : IPublishedContent
+	{
+		/// <summary>Skjul i navigationen</summary>
+		bool UmbracoNavihide { get; }
+	}
+
+	/// <summary>_Navigation</summary>
+	[PublishedContentModel("navigation")]
+	public partial class Navigation : PublishedContentModel, INavigation
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "settings";
+		public new const string ModelTypeAlias = "navigation";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Settings(IPublishedContent content)
+		public Navigation(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -40,27 +48,9 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Settings, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Navigation, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Logo
-		///</summary>
-		[ImplementPropertyType("logo")]
-		public IPublishedContent Logo
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("logo"); }
-		}
-
-		///<summary>
-		/// Sitenavn
-		///</summary>
-		[ImplementPropertyType("siteName")]
-		public string SiteName
-		{
-			get { return this.GetPropertyValue<string>("siteName"); }
 		}
 
 		///<summary>
@@ -69,7 +59,10 @@ namespace Umbraco.Web.PublishedContentModels
 		[ImplementPropertyType("umbracoNavihide")]
 		public bool UmbracoNavihide
 		{
-			get { return Umbraco.Web.PublishedContentModels.Navigation.GetUmbracoNavihide(this); }
+			get { return GetUmbracoNavihide(this); }
 		}
+
+		/// <summary>Static getter for Skjul i navigationen</summary>
+		public static bool GetUmbracoNavihide(INavigation that) { return that.GetPropertyValue<bool>("umbracoNavihide"); }
 	}
 }

@@ -44,5 +44,14 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Forsidebillede
+		///</summary>
+		[ImplementPropertyType("image")]
+		public IPublishedContent Image
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("image"); }
+		}
 	}
 }

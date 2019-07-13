@@ -1,0 +1,18 @@
+﻿@inherits UmbracoViewPage
+@using SmaafortaellingerV7.Infrastructure.Helpers
+
+@{
+    Layout = null;
+    var settings = SiteHelpers.Settings as Settings;
+}
+    <div class="container">
+        <header class="header">
+            @if (settings != null && settings.Logo != null)
+            {
+                <a href="/" title="Gå til forsiden">
+                    <img src="@settings.Logo.Url" alt="Logo" class="logo" />
+                </a>
+            }
+
+        </header>
+    </div>
