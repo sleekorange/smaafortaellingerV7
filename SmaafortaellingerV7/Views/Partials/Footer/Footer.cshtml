@@ -1,11 +1,14 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using SmaafortaellingerV7.Infrastructure.Helpers
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var settings = SiteHelpers.Settings as Settings;
+}
 
 <div class="footer">
     <div class="container">
-        <h2>Footer indhold</h2>
+        <p>@settings.FooterText</p>
     </div>
     
     <div class="footer-trees">
-        @*<img src="~/dist/images/svg/trees.svg" />*@
     </div>
 </div>

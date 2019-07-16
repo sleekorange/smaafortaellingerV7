@@ -2,7 +2,7 @@
 /// <reference path="../settings/_settings.scss" />
 
 body {
-    background: #fff;
+    background: #f8f8f8;
     color: #666;
 }
 
@@ -37,6 +37,11 @@ h1, h2, h3, h4, h5 {
 
 .slider-image {
     position: relative;
+    border-radius: 8px;
+
+    img {
+        border-radius: 8px;
+    }
 
     &:before {
         content: "";
@@ -62,12 +67,25 @@ h1, h2, h3, h4, h5 {
         color: white;
         max-width: 60%;
         text-rendering: optimizeLegibility;
+
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
     }
 }
 
 .content-page {
     background: $white;
     padding: 30px 20px;
+}
+
+.icon-text-link {
+    color: $black;
+
+    &:hover {
+        text-decoration: none;
+        color: $black;
+    }
 }
 
 .icon-text-box {
@@ -77,10 +95,15 @@ h1, h2, h3, h4, h5 {
         display: flex;
         flex-direction: column;
         text-align: center;
-        border: 5px solid $primary-color;
         padding: 20px;
         border-radius: 8px;
         background: white;
+        border: 5px solid white;
+        transition: all 0.3s linear;
+
+        &:hover {
+            border: 5px solid $primary-color;
+        }
 
         img {
             width: 64px;

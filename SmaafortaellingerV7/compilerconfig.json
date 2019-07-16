@@ -1,6 +1,7 @@
-﻿[
+[
   {
     "outputFile": "dist/scss/app.css",
-    "inputFile": "dist/scss/app.scss"
+    "inputFile": "dist/scss/app.scss",
+    "sourceMap": false
   }
 ]

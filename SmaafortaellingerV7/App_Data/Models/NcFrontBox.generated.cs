@@ -20,16 +20,16 @@ using Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Indstillinger</summary>
-	[PublishedContentModel("settings")]
-	public partial class Settings : PublishedContentModel, INavigation
+	/// <summary>frontBox</summary>
+	[PublishedContentModel("ncFrontBox")]
+	public partial class NcFrontBox : PublishedContentModel
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "settings";
+		public new const string ModelTypeAlias = "ncFrontBox";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Settings(IPublishedContent content)
+		public NcFrontBox(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -40,36 +40,45 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Settings, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<NcFrontBox, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 
 		///<summary>
-		/// Footer text
+		/// Indhold
 		///</summary>
-		[ImplementPropertyType("footerText")]
-		public string FooterText
+		[ImplementPropertyType("content")]
+		public IHtmlString Content
 		{
-			get { return this.GetPropertyValue<string>("footerText"); }
+			get { return this.GetPropertyValue<IHtmlString>("content"); }
 		}
 
 		///<summary>
-		/// Logo
+		/// Ikon
 		///</summary>
-		[ImplementPropertyType("logo")]
-		public IPublishedContent Logo
+		[ImplementPropertyType("icon")]
+		public IPublishedContent Icon
 		{
-			get { return this.GetPropertyValue<IPublishedContent>("logo"); }
+			get { return this.GetPropertyValue<IPublishedContent>("icon"); }
 		}
 
 		///<summary>
-		/// Skjul i navigationen
+		/// Link til side
 		///</summary>
-		[ImplementPropertyType("umbracoNavihide")]
-		public bool UmbracoNavihide
+		[ImplementPropertyType("link")]
+		public IPublishedContent Link
 		{
-			get { return Umbraco.Web.PublishedContentModels.Navigation.GetUmbracoNavihide(this); }
+			get { return this.GetPropertyValue<IPublishedContent>("link"); }
+		}
+
+		///<summary>
+		/// Overskrift
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return this.GetPropertyValue<string>("title"); }
 		}
 	}
 }

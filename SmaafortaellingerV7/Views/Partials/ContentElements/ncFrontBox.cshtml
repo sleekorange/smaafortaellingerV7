@@ -1,0 +1,24 @@
+﻿@inherits UmbracoViewPage<NcFrontBox>
+
+@{
+    var hasLink = Model.Link != null;
+}
+
+<div class="col-md-4">
+    @if (hasLink)
+    {
+        <a href="@Model.Link.Url" class="icon-text-link">
+            <div class="icon-text-holder">
+                <div>
+                    <img src="@Model.Icon.Url()"/>
+                </div>
+                <div>
+                    <h3>@Model.Title</h3>
+                </div>
+                <div class="icon-text">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </a>
+    }
+</div>

@@ -46,12 +46,30 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Forsidebillede
+		/// Forside bokse
+		///</summary>
+		[ImplementPropertyType("frontBoxes")]
+		public IEnumerable<IPublishedContent> FrontBoxes
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("frontBoxes"); }
+		}
+
+		///<summary>
+		/// Forside billede
 		///</summary>
 		[ImplementPropertyType("image")]
 		public IPublishedContent Image
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("image"); }
+		}
+
+		///<summary>
+		/// Billede tekst
+		///</summary>
+		[ImplementPropertyType("imageText")]
+		public string ImageText
+		{
+			get { return this.GetPropertyValue<string>("imageText"); }
 		}
 	}
 }

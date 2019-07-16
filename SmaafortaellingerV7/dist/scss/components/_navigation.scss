@@ -7,21 +7,28 @@
     display: flex;
     position: relative;
     z-index: 2;
+    font-size: 22px;
+
+    @media only screen and (max-width: 768px) {
+        display: block;
+        font-size: 18px;
+    }
 
     ul {
         margin-left: auto;
         margin-top: auto;
         margin-bottom: 0;
-        font-size: 22px;
         font-weight: 400;
         font-family: 'Josefin Sans', sans-serif;
         list-style: none;
         padding: 0;
         display: flex;
 
-        li {
+        > li {
             margin-left: 30px;
+        }
 
+        li {
             a {
                 position: relative;
                 color: $black;
@@ -54,6 +61,10 @@
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 padding: 10px;
+            }
+
+            li {
+                margin-left: 5px;
             }
 
             &:hover {
